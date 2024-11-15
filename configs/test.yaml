@@ -1,0 +1,46 @@
+train_entity_file: './data/csv_files/radgraph_umls.json'
+train_fg_query_file_v1: './data/csv_files/merge_data/train_all_merge_ali.csv'
+siimacr_file: './data/csv_files/test_SIIMACR.csv'
+mrsty_file: './data/csv_files/MRSTY.csv'
+chestxray_train_file: './data/csv_files/ChestXray14/binary_train.csv'
+chestxray_valid_file: './data/csv_files/ChestXray14/binary_valid.csv'
+chestxray_test_file: './data/csv_files/ChestXray14/official_test.csv'
+chexpert_train_file: './data/csv_files/ChestXray14/CheXpert/train.csv'
+chexpert_valid_file: './data/csv_files/ChestXray14/CheXpert/valid.csv'
+chexpert_test_file: './data/csv_files/ChestXray14/CheXpert/test.csv'
+vindrcxr_test_file: './data/csv_files/VINDR_test.csv'
+openi_test_file: './data/csv_files/openifinal.csv'
+shenzhen_test_file: './data/csv_files/shenzhen.csv'
+padchest_test_file: './data/csv_files/Physician_label193_all.csv'
+mimic_test_file: './data/csv_files/merge_data/test_mimic_ali.csv'
+ft_siimacr: ''
+
+
+image_res: 512
+batch_size: 32
+test_batch_size: 32
+lora_r: 32
+lora_alpha: 16
+num_classes: 40
+num_workers: 8
+test_num_workers: 8
+criterion: asl # asl bce
+weighted_criterion: False
+weight_dict: './data/csv_files/merge_data/label_distribution.json'
+temp: 0.07
+mlm_probability: 0.15
+queue_size: 8192
+momentum: 0.995
+alpha: 0.4
+lam: [1.0,0.4]
+image_encoder_name: lora_resnet152
+loss_ratio: 1.0
+loss_ratio_note: clip_ratio
+finetune: './checkpoint_30.pt' 
+# rho: 0.0001
+rho: 0.0
+# rho: 0.0
+optimizer: {opt: adamw, lr: 0.0001, weight_decay: 0.01} 
+schedular: {sched: cosine, lr: 0.0001, epochs: 40, min_lr: 0.0001, decay_rate: 1, warmup_lr: 0.0001, warmup_epochs: 0, cooldown_epochs: 0}
+
+dataset_list:
